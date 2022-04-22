@@ -1,14 +1,23 @@
-SOURCE = rush.c struct.c
+SOURCE = ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isascii.c ft_isprint.c
+
 OBJS = ${SOURCE:.c=.o}
+TARGET = libft.a
+INCLUDES = includes
 GCC = gcc
 CFLAGS = -Wall -Werror -Wextra
 .c.o:
 	${GCC} ${CFLAGS} -c $< -o ${<:.c=.o}
-$NAME: ${OBJS} 	
-	${GCC} -o rush-02 ${OBJS}
+all: ${TARGET}
+
+${TARGET}: ${OBJS}
+	ar -rc ${TARGET} ${OBJS}
 clean:
 	rm ${OBJS}
 fclean:	clean
-	rm rush-02
+	rm ${TARGET}
 try:
-	./rush-02
+	./libft.a
+
+re: fclean all
+
+.PHONY: all clean fclean try re

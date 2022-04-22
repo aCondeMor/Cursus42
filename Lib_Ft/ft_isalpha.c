@@ -6,14 +6,15 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:55:34 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/04/21 11:05:09 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/04/22 14:08:48 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int ft_isalpha(int c)
+int	ft_isalpha(int c)
 {
 	if (((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z')))
-		return(1);
+		return (1);
 	else
-		return(0);
+		return (0);
 }

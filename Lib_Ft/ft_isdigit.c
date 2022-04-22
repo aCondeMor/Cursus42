@@ -6,14 +6,15 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:33:31 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/04/21 12:14:21 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/04/22 14:09:16 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if ((c >= '0') && (c <= '9'))
-		return(1);
+		return (1);
 	else
-		return(0);
+		return (0);
 }
