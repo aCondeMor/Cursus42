@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/21 10:28:32 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/04/22 14:21:49 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/04/25 13:17:44 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/04/26 11:41:27 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  LIBFT_H
-# define LIBFT_H
+#include "libft.h" 
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
+size_t	ft_strlcpy(char *dest, const char *src, size_t max)
+{
+	size_t	length;
 
-int ft_isalpha(int c);
-int ft_isdigit(int c);
-int ft_isalnum(int c);
-int ft_isascii(int c);
-int ft_isprint(int c);
-int ft_strlen(char *str);
-void    ft_memset(void *str, int c, size_t n);
-void	ft_bzero(void *str, size_t n);
-
-#endif
+	length = ft_strlen(src);
+	if ((length + 1) < max)
+		dest = ft_memcpy(dest, src, length + 1);
+	else if (max > 0)
+	{
+		ft_memcpy(dest, src, max - 1);
+		dest[max - 1] = '\0';
+	}
+	return (length);
+}

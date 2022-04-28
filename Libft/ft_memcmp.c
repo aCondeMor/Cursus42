@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/23 20:59:18 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/04/23 20:59:18 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/04/28 12:09:25 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/04/28 12:16:00 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy (void *dst, void *src, size_t n)
+int	ft_memcmp(void *dst, void *src, size_t n)
 {
 	size_t		cont;
-
+	
 	cont = 0;
-	if (!dst)
-		return (NULL);
 	while (cont < n)
 	{
-		*(dst + cont) = *(src + cont);
-		cont++;
+		if (*(char *)(dst + cont) != *(char *)(src + cont))
+			return (*(char *)(dst + cont) - *(char *)(src + cont));
+		else
+			cont++;
 	}
-	return (dst);
+	return (0);
 }
