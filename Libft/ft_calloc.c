@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 12:09:25 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/04 10:34:56 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/05/04 16:05:24 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/05/04 16:26:35 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-#include "libft.h"
-
-int	ft_memcmp(void *dst, void *src, size_t n)
+void	*ft_calloc(size_t count, size_t size)
 {
-	size_t		cont;
-	unsigned char	*dstcpy;
-	unsigned char	*srccpy;
-
-	cont = 0;
-	dstcpy = (unsigned char *)dst;
-	srccpy = (unsigned char *)src;
-	while (cont < n)
-	{
-		if (*(dstcpy + cont) != *(srccpy + cont))
-			return (*(dstcpy + cont) - *(srccpy + cont));
-		cont++;
-	}
-	return (0);
+	char	*newstr;
+	
+	if ((count == SIZE_MAX && size > 1) || (count > 1 && size == SIZE_MAX))
+		return (NULL);
+	newstr = malloc(count * size);
+	if (!newstr)
+		return(NULL);
+	ft_bzero(newstr, size * count);
+	return(newstr);
 }

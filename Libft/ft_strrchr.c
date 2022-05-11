@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 12:09:25 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/04 10:34:56 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/05/04 11:56:26 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/05/04 11:57:43 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft.h" 
 
-int	ft_memcmp(void *dst, void *src, size_t n)
+char	*ft_strrchr(char *src, int c)
 {
-	size_t		cont;
-	unsigned char	*dstcpy;
-	unsigned char	*srccpy;
+	size_t	length_src;
+	size_t count;
+	char	*aux;
 
-	cont = 0;
-	dstcpy = (unsigned char *)dst;
-	srccpy = (unsigned char *)src;
-	while (cont < n)
+	length_src = ft_strlen(src);
+	count = 0;
+	aux = NULL;
+	while (count <= length_src)
 	{
-		if (*(dstcpy + cont) != *(srccpy + cont))
-			return (*(dstcpy + cont) - *(srccpy + cont));
-		cont++;
+		if (src[count] == c)
+			aux = (src + count);
+		count++;
 	}
-	return (0);
+	return (aux);
 }

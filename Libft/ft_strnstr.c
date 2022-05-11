@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 12:09:25 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/04 10:34:56 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/05/04 12:46:45 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/05/04 15:37:43 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int	ft_memcmp(void *dst, void *src, size_t n)
+char	*ft_strnstr(char *str, char *to_find, size_t n)
 {
-	size_t		cont;
-	unsigned char	*dstcpy;
-	unsigned char	*srccpy;
+	size_t	i;
+	size_t	x;
 
-	cont = 0;
-	dstcpy = (unsigned char *)dst;
-	srccpy = (unsigned char *)src;
-	while (cont < n)
-	{
-		if (*(dstcpy + cont) != *(srccpy + cont))
-			return (*(dstcpy + cont) - *(srccpy + cont));
-		cont++;
+	i = 0;
+	x = 0;
+	if (ft_strlen(to_find) == 0) 
+		return (str);
+	while (str[i] != '\0')
+	{	
+		while ((to_find[x] == str[i + x]) && (to_find[x] != '\0') 
+				&& (i + x < n))
+			x++;
+		if ((int)x == ft_strlen(to_find))
+			return (str + i);
+		x = 0;
+		i++;
 	}
 	return (0);
 }

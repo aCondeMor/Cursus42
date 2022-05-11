@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 12:09:25 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/04 10:34:56 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/05/04 17:32:51 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/05/11 13:01:21 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-#include "libft.h"
-
-int	ft_memcmp(void *dst, void *src, size_t n)
+char *ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t		cont;
-	unsigned char	*dstcpy;
-	unsigned char	*srccpy;
+	size_t i;
+	size_t init;
+	char *newstr;
 
-	cont = 0;
-	dstcpy = (unsigned char *)dst;
-	srccpy = (unsigned char *)src;
-	while (cont < n)
+	i = 0;
+	init = (size_t)start;
+	if (!s)
+		return (0);	
+	if (!(newstr = malloc(len + 1)))
+		return (0);
+	if ((ft_strlen(s) < (int)start))
+		return (ft_strdup(""));
+	while ((s[init + i] != '\0') && (i < len))
 	{
-		if (*(dstcpy + cont) != *(srccpy + cont))
-			return (*(dstcpy + cont) - *(srccpy + cont));
-		cont++;
+		newstr[i] = s[init + i]; 
+		i++;
 	}
-	return (0);
+	newstr[i] = '\0';
+	return (newstr);
 }

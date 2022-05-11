@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 12:09:25 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/04 10:34:56 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/05/04 15:45:13 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/05/04 16:03:13 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include"libft.h"
 
-#include "libft.h"
 
-int	ft_memcmp(void *dst, void *src, size_t n)
+char *ft_strdup(const char *str)
 {
-	size_t		cont;
-	unsigned char	*dstcpy;
-	unsigned char	*srccpy;
-
-	cont = 0;
-	dstcpy = (unsigned char *)dst;
-	srccpy = (unsigned char *)src;
-	while (cont < n)
-	{
-		if (*(dstcpy + cont) != *(srccpy + cont))
-			return (*(dstcpy + cont) - *(srccpy + cont));
-		cont++;
-	}
-	return (0);
+	char	*newstr;
+	
+	newstr = malloc(ft_strlen(str)+1);
+	if (!newstr)
+		return(0);
+	newstr = ft_memcpy(newstr, str,ft_strlen(str)+1);
+	return(newstr);
 }
