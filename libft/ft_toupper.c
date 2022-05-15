@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 15:45:13 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/04 16:03:13 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/05/04 10:43:15 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/05/15 23:12:00 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
 
+#include "libft.h"
 
-char *ft_strdup(const char *str)
+int	ft_toupper(int c)
 {
-	char	*newstr;
-	
-	newstr = malloc(ft_strlen(str)+1);
-	if (!newstr)
-		return(0);
-	newstr = ft_memcpy(newstr, str,ft_strlen(str)+1);
-	return(newstr);
+	if ((c >= 97) && (c <= 122))
+		return (c - 32);
+	else
+		return (c);
 }

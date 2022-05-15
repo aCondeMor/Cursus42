@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 10:43:15 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/04 11:31:52 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/05/12 12:57:21 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/05/15 23:28:28 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-int	ft_tolower(int c)
+int	ft_lstsize(t_list *lst)
 {
-	if ((c >= 'A') && (c <= 'Z'))
-			return (c + 32);
-	else
-		return (c);
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = (*lst).next;
+		i++;
+	}
+	return (i);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:57:28 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/11 19:01:53 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/05/15 23:25:30 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_recu_itoa(long nbr, int size, int neg)
 {
-	char	*chain; 
+	char	*chain;
 	long	aux;
 	int		i;
 
@@ -22,7 +22,7 @@ char	*ft_recu_itoa(long nbr, int size, int neg)
 	i = 0;
 	chain = malloc(size + 1);
 	if (!chain)
-		return (0);	
+		return (0);
 	while (aux > 0)
 	{
 		chain[size - i -1] = ((aux % 10) + '0');
@@ -35,16 +35,16 @@ char	*ft_recu_itoa(long nbr, int size, int neg)
 	return (chain);
 }
 
-int ft_getsize(long nbr)
+int	ft_getsize(long nbr)
 {
 	int		i;
 	long	aux;
-	
+
 	i = 0;
 	aux = nbr;
 	while (aux > 0)
 	{
-		aux = aux/10;
+		aux = aux / 10;
 		i++;
 	}
 	return (i);
@@ -56,7 +56,7 @@ char	*ft_itoa(int nbr)
 	long	aux;
 	int		neg;
 	char	*chain;
-	
+
 	neg = 0;
 	aux = nbr;
 	if (nbr < 0)

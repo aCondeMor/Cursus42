@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 12:09:25 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/04 10:34:56 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/05/15 23:30:37 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_memcmp(void *dst, void *src, size_t n)
 {
-	size_t		cont;
+	size_t			cont;
 	unsigned char	*dstcpy;
 	unsigned char	*srccpy;
 

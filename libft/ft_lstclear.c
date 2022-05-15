@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 10:43:15 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/04 11:28:02 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/05/12 12:57:21 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/05/15 23:38:08 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-int	ft_toupper(int c)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	if ((c >= 97) && (c <= 122))
-			return (c - 32);
-	else
-		return (c);
+	if (lst && *lst)
+	{
+		ft_lstclear(&(*lst)->next, del);
+		ft_lstdelone(*lst, del);
+		*lst = 0;
+	}
 }
