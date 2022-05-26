@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 10:28:32 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/16 00:11:44 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/05/17 13:57:07 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_strchr(char *src, int c);
 char	*ft_strrchr(char *src, int c);
-int		ft_strncmp(char *dst, char *src, size_t n);
-char	*ft_strnstr(char *str, char *to_find, size_t n);
+int		ft_strncmp(char const *dst, char const *src, size_t n);
+char	*ft_strnstr(char const *str, char const *to_find, size_t n);
 char	*ft_strdup(const char *str);
 void	*ft_calloc(size_t count, size_t size);
-int		ft_atoi(char *str);
+int		ft_atoi(char const *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);

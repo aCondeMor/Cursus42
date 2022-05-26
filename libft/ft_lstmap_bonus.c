@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 12:46:45 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/17 13:59:19 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/05/12 12:57:21 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/05/17 13:44:22 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-char	*ft_strnstr(char const *str, char const *to_find, size_t n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
-	size_t	x;
+	t_list	*newlst;
+	t_list	*node;
 
-	i = 0;
-	x = 0;
-	if (ft_strlen(to_find) == 0)
-		return ((char *)str);
-	while (str[i] != '\0')
-	{	
-		while ((to_find[x] == str[i + x]) && (to_find[x] != '\0')
-			&& (i + x < n))
-			x++;
-		if ((int)x == ft_strlen(to_find))
-			return ((char *)(str + i));
-		x = 0;
-		i++;
+	if ((!lst))
+		return (0);
+	newlst = 0;
+	while (lst)
+	{
+		node = ft_lstnew(f((*lst).content));
+		if (!node)
+		{
+			ft_lstclear(&node, del);
+			return (0);
+		}
+		ft_lstadd_back(&newlst, node);
+		lst = (*lst).next;
 	}
-	return (0);
+	return (newlst);
 }

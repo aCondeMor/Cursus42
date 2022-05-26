@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 11:56:26 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/15 23:32:36 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/05/17 12:44:17 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strrchr(char *src, int c)
 	aux = NULL;
 	while (count <= length_src)
 	{
-		if (src[count] == c)
+		if (src[count] == (unsigned char)(c))
 			aux = (src + count);
 		count++;
 	}

@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/04 12:46:45 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/17 13:59:19 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/05/12 12:57:21 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/05/17 13:43:00 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"libft.h"
 
-char	*ft_strnstr(char const *str, char const *to_find, size_t n)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t	i;
-	size_t	x;
+	t_list	*last;
 
-	i = 0;
-	x = 0;
-	if (ft_strlen(to_find) == 0)
-		return ((char *)str);
-	while (str[i] != '\0')
-	{	
-		while ((to_find[x] == str[i + x]) && (to_find[x] != '\0')
-			&& (i + x < n))
-			x++;
-		if ((int)x == ft_strlen(to_find))
-			return ((char *)(str + i));
-		x = 0;
-		i++;
-	}
-	return (0);
+	last = ft_lstlast(*lst);
+	if (last)
+		(*last).next = new;
+	else
+		*lst = new;
 }

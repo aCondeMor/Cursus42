@@ -6,9 +6,9 @@ SOURCE = ft_isalnum.c ft_isalpha.c ft_isdigit.c ft_isascii.c ft_isprint.c\
 		 ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c\
 		 ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
 
-BSOURCE = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c\
-		  ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c\
-		  ft_lstmap.c
+BSOURCE = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c\
+		  ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c\
+		  ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
 OBJS = ${SOURCE:.c=.o}
 BOBJS = ${BSOURCE:.c=.o}
@@ -27,11 +27,11 @@ ${NAME}: ${OBJS}
 bonus: $(OBJS) $(BOBJS)
 	ar -rc $(NAME) $?
 clean:
-	rm ${OBJS} ${BOBJS}
+	rm -f ${OBJS} ${BOBJS}
 fclean:	clean
 	rm -f ${NAME}
 try:
 	./libft.a
 re: fclean all
 
-.PHONY: all clean fclean try re so bonus
+.PHONY: all clean fclean try re so bonus .c.o

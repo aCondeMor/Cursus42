@@ -6,13 +6,13 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:08:30 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/05/15 23:36:21 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/05/17 13:34:29 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(char *dst, char *src, size_t n)
+int	ft_strncmp(char const *dst, char const *src, size_t n)
 {
 	size_t			count;
 	unsigned char	*dst_cpy;
