@@ -3,39 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 20:47:42 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/06/09 18:14:34 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/06/23 00:15:36 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-void	*ft_memcpy(void *dst, void *src, size_t n)
+
+int	ft_strlen(char *str)
+{
+	int		cont;
+
+	cont = 0;
+	if (!str)
+		return (0);
+	while (str[cont] != '\0')
+	{
+		cont++;
+	}
+	return (cont);
+}
+
+void	*ft_bzero(void *str, size_t n)
 {
 	size_t		cont;
 
+	if (!str)
+		return (0);
 	cont = 0;
-	if (!dst && !src)
-		return (NULL);
 	while (cont < n)
 	{
-		*(unsigned char *)(dst + cont) = *(unsigned char *)(src + cont);
+		*(unsigned char *)(str + cont) = '\0';
 		cont++;
 	}
-	return (dst);
-}
-
-char	*ft_strdup(char *str)
-{
-	char	*newstr;
-
-	newstr = malloc(ft_strlen(str) + 1);
-	if (!newstr)
-		return (0);
-	newstr = ft_memcpy(newstr, str, ft_strlen(str) + 1);
-	return (newstr);
+	return (str);
 }
 
 char	*ft_strchr(char *src, int c)
@@ -91,7 +95,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 	if (!s)
 		return (0);
 	if (((unsigned int)ft_strlen(s) < start))
-		return (ft_strdup(""));
+		return ("");
 	if ((ft_strlen(s) - start) > len)
 		newstr = malloc((len + 1) * sizeof(char));
 	else

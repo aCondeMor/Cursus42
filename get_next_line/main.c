@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 17:41:44 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/06/09 17:41:46 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/06/22 19:17:13 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,12 @@ char	*ft_open(char *filename)
 	fd1 = open(filename, O_RDONLY);
 	table = get_next_line(fd1);
 	printf("la linea leida es: %s", table);
+	while (table)
+	{
 	table = get_next_line(fd1);
 	printf("la linea leida es: %s", table);
-	table = get_next_line(fd1);
-	printf("la linea leida es: %s", table);
-	table = get_next_line(fd1);
-	printf("la linea leida es: %s", table);
-	table = get_next_line(fd1);
-	printf("la linea leida es: %s", table);
-	table = get_next_line(fd1);
-	printf("la linea leida es: %s", table);
-	table = get_next_line(fd1);
-	printf("la linea leida es: %s", table);
+		/* code */
+	}
 	close(fd1);
 	return (table);
 }
