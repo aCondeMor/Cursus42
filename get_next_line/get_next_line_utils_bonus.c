@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 20:47:42 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/06/23 00:15:36 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/06/28 08:47:20 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
 
 int	ft_strlen(char *str)
 {
@@ -21,9 +20,7 @@ int	ft_strlen(char *str)
 	if (!str)
 		return (0);
 	while (str[cont] != '\0')
-	{
 		cont++;
-	}
 	return (cont);
 }
 

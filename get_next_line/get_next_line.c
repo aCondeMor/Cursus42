@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 11:12:43 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/06/23 00:10:14 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/06/28 08:48:12 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@ char	*check_line(char *line_read)
 	return (line_aux);
 }
 
-char	*set_line_read(char * line_read)
+char	*set_line_read(char *line_read)
 {
 	char		*tmp;
 
 	tmp = line_read;
-	line_read = ft_substr(line_read, ft_strlen(line_read) - ft_strlen((ft_strchr(line_read, '\n'))) + 1,
-				ft_strlen(line_read));
+	line_read = ft_substr(line_read, ft_strlen(line_read)
+			- ft_strlen((ft_strchr(line_read, '\n'))) + 1,
+			ft_strlen(line_read));
 	free(tmp);
 	return (line_read);
 }

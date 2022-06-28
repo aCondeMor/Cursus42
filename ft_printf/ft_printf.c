@@ -3,80 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/06/25 13:16:06 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/06/28 16:46:20 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-char	check_flag(char a)
+int	ft_print_arg(char a, va_list list)
 {
-	if (a == '0') | (a == '+') | (a == '-')
-		return (a);
+	if (a == 'c')
+		return (ft_print_char(list));
+	else if (a == 's')
+		return (ft_print_str(list));
+	else if (a == 'p')
+		return (ft_print_hexa(list));
+	/*else if (a == 'd')
+	else if (a == 'i')
+	else if (a == 'v')
+	else if (a == 'x')
+	else if (a == 'X')
+	else if (a == '%')*/
 	else
 		return (0);
 }
 
-char	check_param(char a)
+int	ft_printf(char *str, ...)
 {
-	if ((a == 'c') | (a == 's') | (a == 'p') | (a == 'd') | (a == 'i') | (a == 'v') | (a == 'x') | (a == 'X') | (a == '%'))
-		return (a);
-	else
-		return (0);
-}
+	va_list	list;
+	int		i;
+	int		sum;
 
-
-t_args	*check_args(char *str)
-{
-	t_args	buffer;
-	t_list list;
-
-	buffer = malloc(sizeof t_args);
-	
-	while (str != '\0')
+	i = 0;
+	sum = 0;
+	if (str)
 	{
-		if (str[i] == '%')
+		va_start(list, str);
+		while (str[i] != '\0')
 		{
-			i++;
-			if (str[i] != '\0')
+			if (str[i] == '%')
 			{
-				buffer.flag = check_flag(str[i]);
-				if (buffer.flag)
-					i++;
-				else
-					buffer.param = check_param(str[i]);
-				if (buffer.param)
-				{
-					if (!list)
-						list = ft_lstnew(buffer);
-					else
-						 ft_lstadd_back(list, buffer);
-				}
-				else
-					return (0);
+				i++;
+				sum += ft_print_arg(str[i], list);
 			}
 			else
-			{
-				free(buffer);
-				return(0);
-			}
+				write(1, &str[i], 1);
+		i++;
+		sum++;
 		}
-	i++;
 	}
-}
-
-int ft_printf(char *str, ...)
-{
-    va_list list;
-    t_args    *list_args;
-
-    if (str)
-    {
-        va_start(list, str);
-        list_args = check_args(str);
-    }
+	va_end(list);
+	return (sum);//chequear si cuenta los salto de linea y el fin de fichero al terminar
 }

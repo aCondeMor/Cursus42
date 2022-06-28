@@ -3,38 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 17:41:44 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/06/22 19:17:13 by aconde-m         ###   ########.fr       */
+/*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
+/*   Updated: 2022/06/28 16:57:52 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-
-char	*ft_open(char *filename)
-{
-	int		fd1;
-	char	*table;
-
-	fd1 = open(filename, O_RDONLY);
-	table = get_next_line(fd1);
-	printf("la linea leida es: %s", table);
-	while (table)
-	{
-	table = get_next_line(fd1);
-	printf("la linea leida es: %s", table);
-		/* code */
-	}
-	close(fd1);
-	return (table);
-}
+#include "ft_printf.h"
 
 int	main(void)
 {
-	char	*filename;
-	char	*dicts;
+	char	c;
+	char	p;
+	int		result;
+	char	cadena[5] = "Hola";
 
-	filename = "test1.txt";
-	dicts = ft_open(filename);
+	c = 'j';
+	p = 'a';
+	result = ft_printf("esto es un caracter: %c\n y la otra es: %s\n", c, cadena);
+	printf("resultado es:%d\n", result);
+	printf("%p\n", &cadena);
 }
