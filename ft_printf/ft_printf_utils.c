@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/07/01 16:27:41 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/07/09 10:07:40 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_Xhexa(unsigned int	hexadec) //buscarlo en la piscina C04/EX04
+int	ft_print_x_may_hexa(unsigned int hexadec)
 {
-	int	result;
-	long cambio;
+	int		result;
+	long	cambio;
 
 	cambio = (long)hexadec;
 	if (hexadec < 0)
 		hexadec = 4294967295 + hexadec;
 	result = 0;
 	result = print_base(hexadec, "0123456789ABCDEF", 0);
-	return (result+1);
+	return (result + 1);
 }
 
 char	*ft_recu_itoa(long nbr, int size, int neg)
@@ -81,12 +81,12 @@ int	ft_newutoa(int nbr)
 	size = ft_getsize(aux);
 	if (nbr == 0)
 	{
-		write(1,&a, 1);
+		write(1, &a, 1);
 		return (1);
 	}
 	else
 		chain = ft_recu_itoa(aux, neg + size, neg);
-	write(1,chain, ft_getsize(aux) + neg);
+	write(1, chain, ft_getsize(aux) + neg);
 	free(chain);
 	return (size + neg);
 }
@@ -110,12 +110,12 @@ int	ft_newitoa(int nbr)
 	size = ft_getsize(aux);
 	if (nbr == 0)
 	{
-		write(1,&a, 1);
+		write(1, &a, 1);
 		return (1);
 	}
 	else
 		chain = ft_recu_itoa(aux, neg + size, neg);
-	write(1,chain, ft_getsize(aux) + neg);
+	write(1, chain, ft_getsize(aux) + neg);
 	free(chain);
 	return (size + neg);
 }
