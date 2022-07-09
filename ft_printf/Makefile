@@ -1,5 +1,5 @@
 SOURCE = main.c ft_printf.c ft_printf_utils.c libft/ft_putchar_fd.c\
-	libft/ft_putstr_fd.c libft/ft_strlen.c
+	libft/ft_putstr_fd.c libft/ft_strlen.c ft_printf_utils_v2.c 
 
 OBJS = ${SOURCE:.c=.o}
 NAME = libftprintf.a
