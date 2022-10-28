@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 19:12:53 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/17 12:25:10 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:36:41 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,49 +21,52 @@ t_stack	*ft_stack_new(int size)
 	stack = malloc(size * (sizeof(t_stack)));
 	if (!stack)
 		return (0);
-	
 	while (iter < size)
 	{
 		stack[iter].content = 0;
 		stack[iter].size = size;
-		stack[iter].isNull = 1;
+		stack[iter].isnull = 1;
+		stack[iter].index = -1;
 		iter++;
 	}
 	return (stack);
 }
 
-void	ft_stack_addtop(t_stack *stack, int content)
+void	ft_stack_addtop(t_stack *stack, int content, int index)
 {
-	int iter;
-	int size;
+	int	iter;
+	int	size;
 
 	iter = 0;
-	size = stack[0].size;	
+	size = stack[0].size;
 	while ((size - iter - 2) >= 0)
 	{
 		stack[(size - iter - 1)].content = stack[(size - iter - 2)].content;
-		stack[(size - iter - 1)].isNull = stack[(size - iter - 2)].isNull;
+		stack[(size - iter - 1)].isnull = stack[(size - iter - 2)].isnull;
+		stack[(size - iter - 1)].index = stack[(size - iter - 2)].index;
 		iter++;
 	}
 	stack[0].content = content;
-	stack[0].isNull = 0;
+	stack[0].isnull = 0;
+	stack[0].index = index;
 }
 
-void	ft_stack_addnext(t_stack *stack, int content)
+void	ft_stack_addnext(t_stack *stack, int content, int index)
 {
-	int iter;
-	int size;
+	int	iter;
+	int	size;
 
 	iter = 0;
-	size = stack[0].size;	
+	size = stack[0].size;
 	while (iter < size)
 	{
-		if (stack[iter].isNull == 0)
+		if (stack[iter].isnull == 0)
 			iter++;
 		else
 		{
 			stack[iter].content = content;
-			stack[iter].isNull = 0;
+			stack[iter].isnull = 0;
+			stack[iter].index = index;
 			iter = size;
 		}
 	}
@@ -71,17 +74,38 @@ void	ft_stack_addnext(t_stack *stack, int content)
 
 void	ft_stack_deltop(t_stack *stack)
 {
-	int iter;
-	int size;
+	int	iter;
+	int	size;
 
 	iter = 0;
-	size = stack[0].size;	
+	size = stack[0].size;
 	while (iter < size - 1)
 	{
 		stack[iter].content = stack[(iter + 1)].content;
-		stack[iter].isNull = stack[(iter + 1)].isNull;
+		stack[iter].isnull = stack[(iter + 1)].isnull;
+		stack[iter].index = stack[(iter + 1)].index;
 		iter++;
 	}
 	stack[size - 1].content = 0;
-	stack[size - 1].isNull = 1;
+	stack[size - 1].isnull = 1;
+	stack[size - 1].index = -1;
+}
+
+void	ft_index(t_stack *stack)
+{
+	int	index;
+	int	min;
+	int	pos_aux;
+
+	index = 0;
+	min = 2147483647;
+	pos_aux = 0;
+	while (index < stack[0].size)
+	{
+		pos_aux = ft_find_small(stack, 0);
+		stack[pos_aux].index = index;
+		min = stack[pos_aux].content;
+		pos_aux++;
+		index++;
+	}
 }

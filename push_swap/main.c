@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/18 15:48:03 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/10/27 18:34:57 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_iswrong(void)
+void	ft_iswrong(void)
 {
 	ft_putendl_fd("Error", 2);
 	exit(1);
 }
 
-int ft_is_sorted(t_stack *stack_a)
+int	ft_is_sorted(t_stack *stack_a)
 {
-	int iter;
-	
+	int	iter;
+
 	iter = 1;
-	while ((stack_a[iter].isNull == 0) && (iter < stack_a[0].size))
+	while ((stack_a[iter].isnull == 0) && (iter < stack_a[0].size))
 	{
 		if (stack_a[iter].content < stack_a[iter - 1].content)
-			return(0);
+			return (0);
 		iter++;
 	}
-	return(1);
+	return (1);
 }
 
-void ft_check_dupl(char **argv)
+void	ft_check_dupl(char **argv)
 {
 	int	init;
 	int	iter;
@@ -51,35 +51,36 @@ void ft_check_dupl(char **argv)
 	}
 }
 
-int ft_get_num(char *number)
+int	ft_get_num(char *number)
 {
-	int iter;
-	int neg;
-	long long int suma;
-	
+	int				iter;
+	int				neg;
+	long long int	suma;
+
 	iter = 0;
 	neg = 1;
 	suma = 0;
 	if (number[iter] == '-')
-		{
-			neg = -1;
-			iter++;
-		}
+	{
+		neg = -1;
+		iter++;
+	}
 	else if (number[iter] == '+')
 		iter++;
 	while (number[iter] != '\0')
 	{
 		if (ft_isdigit(number[iter]) != 0)
 			suma = (suma * 10) + (number[iter] - '0');
-			
-		if (((suma > 2147483648) && (neg == -1)) ||
-			(ft_isdigit(number[iter]) == 0) || ((suma >= 2147483648) && (neg == 1)))
+		if (((suma > 2147483648) && (neg == -1))
+			|| (ft_isdigit(number[iter]) == 0)
+			|| ((suma >= 2147483648) && (neg == 1)))
 			ft_iswrong();
 		iter++;
 	}
 	return (suma * neg);
 }
-void ft_init(int argc, char *argv[])
+
+void	ft_init(int argc, char *argv[])
 {
 	int		iter;
 	int		aux;
@@ -94,13 +95,17 @@ void ft_init(int argc, char *argv[])
 	while (iter <= argc)
 	{
 		aux = ft_get_num(argv[iter]);
-		ft_stack_addnext(stack_a, aux);
+		ft_stack_addnext(stack_a, aux, -1);
 		iter++;
 	}
-	ft_print(stack_a, stack_b);
+
 	if (ft_is_sorted(stack_a) == 0)
+	{
+		ft_index(stack_a);
+		ft_print(stack_a, stack_b);
 		ft_sort_nbr(stack_a, stack_b);
-	ft_print(stack_a, stack_b);
+	}
+	//ft_print(stack_a, stack_b);
 	free(stack_a);
 	free(stack_b);
 }
@@ -111,10 +116,10 @@ int	main(int argc, char *argv[])
 
 	aux = NULL;
 	if (argc < 2)
-		ft_iswrong();
+		return (0);
 	else if (argc == 2)
 	{
-		aux = ft_split(ft_strjoin("0 ",argv[1]), 32);
+		aux = ft_split(ft_strjoin("0 ", argv[1]), 32);
 		ft_init((ft_count_lines(argv[1], 32)), aux);
 	}
 	else
