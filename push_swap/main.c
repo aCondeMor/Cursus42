@@ -6,17 +6,11 @@
 /*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/27 18:34:57 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:10:07 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_iswrong(void)
-{
-	ft_putendl_fd("Error", 2);
-	exit(1);
-}
 
 int	ft_is_sorted(t_stack *stack_a)
 {
@@ -98,11 +92,10 @@ void	ft_init(int argc, char *argv[])
 		ft_stack_addnext(stack_a, aux, -1);
 		iter++;
 	}
-
 	if (ft_is_sorted(stack_a) == 0)
 	{
 		ft_index(stack_a);
-		ft_print(stack_a, stack_b);
+		//ft_print(stack_a, stack_b);
 		ft_sort_nbr(stack_a, stack_b);
 	}
 	//ft_print(stack_a, stack_b);

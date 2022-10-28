@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/27 11:26:53 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:13:09 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,26 @@ void	ft_sa(t_stack *stack_a)
 		stack_a[1].content = aux;
 		stack_a[1].isnull = aux_null;
 	}
-	printf("sa\n");
+	ft_putstr_fd("sa\n", 1);
 }
 
 void	ft_sb(t_stack *stack_b)
 {
-	ft_sa(stack_b);
-	printf("sb\n");
+	int	aux;
+	int	aux_null;
+
+	aux = 0;
+	aux_null = 0;
+	if ((stack_b[0].size > 1) && (stack_b[1].isnull == 0))
+	{
+		aux = stack_b[0].content;
+		aux_null = stack_b[0].isnull;
+		stack_b[0].content = stack_b[1].content;
+		stack_b[0].isnull = stack_b[1].isnull;
+		stack_b[1].content = aux;
+		stack_b[1].isnull = aux_null;
+	}
+	ft_putstr_fd("sb\n", 1);
 }
 
 void	ft_ss(t_stack *stack_a, t_stack *stack_b)

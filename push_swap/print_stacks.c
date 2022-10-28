@@ -6,11 +6,17 @@
 /*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/27 18:16:46 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:19:13 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_iswrong(void)
+{
+	ft_putendl_fd("Error", 2);
+	exit(1);
+}
 
 void	ft_print(t_stack *stack_a, t_stack *stack_b)
 {
@@ -23,17 +29,11 @@ void	ft_print(t_stack *stack_a, t_stack *stack_b)
 	while (iter < size)
 	{
 		if (stack_a[iter].isnull == 0)
-		{
-			printf("%d\t", stack_a[iter].content);
-			printf("[%d]\t", stack_a[iter].index);
-		}
+			printf("%d\t[%d]\t", stack_a[iter].content, stack_a[iter].index);
 		else
 			printf("-\t[%d]\t", stack_a[iter].index);
 		if (stack_b[iter].isnull == 0)
-		{
-			printf("%d\t", stack_b[iter].content);
-			printf("[%d]\n", stack_b[iter].index);
-		}
+			printf("%d\t[%d]\n", stack_b[iter].content, stack_b[iter].index);
 		else
 			printf("-\t[%d]\n", stack_b[iter].index);
 		iter++;

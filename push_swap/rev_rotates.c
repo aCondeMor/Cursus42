@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/27 18:29:06 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:09:04 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_rra(t_stack *stack_a)
 {
 	int	aux;
-	int index;
+	int	index;
 	int	iter;
 	int	size;
 
@@ -34,13 +34,32 @@ void	ft_rra(t_stack *stack_a)
 		stack_a[iter - 1].index = -1;
 		ft_stack_addtop(stack_a, aux, index);
 	}
-	printf("rra\n");
+	ft_putstr_fd("rra\n", 1);
 }
 
 void	ft_rrb(t_stack *stack_b)
 {
-	ft_rra(stack_b);
-	printf("rrb\n");
+	int	aux;
+	int	index;
+	int	iter;
+	int	size;
+
+	aux = 0;
+	index = -1;
+	iter = 0;
+	size = stack_b[iter].size;
+	if ((stack_b[iter].size > 1) && (stack_b[iter + 1].isnull == 0))
+	{
+		while ((iter < size) && (stack_b[iter].isnull == 0))
+			iter++;
+		aux = stack_b[iter - 1].content;
+		index = stack_b[iter - 1].index;
+		stack_b[iter - 1].content = 0;
+		stack_b[iter - 1].isnull = 1;
+		stack_b[iter - 1].index = -1;
+		ft_stack_addtop(stack_b, aux, index);
+	}
+	ft_putstr_fd("rrb\n", 1);
 }
 
 void	ft_rrr(t_stack *stack_a, t_stack *stack_b)

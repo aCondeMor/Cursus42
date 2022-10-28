@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/27 18:51:30 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/10/28 12:36:40 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_rrb(t_stack *stack_b);
 void	ft_rrr(t_stack *stack_a, t_stack *stack_b);
 //print stacks
 void	ft_print(t_stack *stack_a, t_stack *stack_b);
+void	ft_iswrong(void);
 //sort
 void	ft_sort_nbr(t_stack *stack_a, t_stack *stack_b);
 void	ft_sort_3elem(t_stack *stack_a);

@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/27 18:31:50 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:21:33 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,24 @@ void	ft_ra(t_stack *stack_a)
 		ft_stack_deltop(stack_a);
 		ft_stack_addnext(stack_a, aux, index);
 	}
-	printf("ra\n");
+	ft_putstr_fd("ra\n", 1);
 }
 
 void	ft_rb(t_stack *stack_b)
 {
-	ft_ra(stack_b);
-	printf("rb\n");
+	int	aux;
+	int	index;
+
+	aux = 0;
+	index = -1;
+	if ((stack_b[0].size > 1) && (stack_b[1].isnull == 0))
+	{
+		aux = stack_b[0].content;
+		index = stack_b[0].index;
+		ft_stack_deltop(stack_b);
+		ft_stack_addnext(stack_b, aux, index);
+	}
+	ft_putstr_fd("rb\n", 1);
 }
 
 void	ft_rr(t_stack *stack_a, t_stack *stack_b)
