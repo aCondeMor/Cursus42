@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 19:12:53 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/27 18:36:41 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/11/02 17:58:25 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,14 @@ void	ft_stack_deltop(t_stack *stack)
 void	ft_index(t_stack *stack)
 {
 	int	index;
-	int	min;
 	int	pos_aux;
 
 	index = 0;
-	min = 2147483647;
 	pos_aux = 0;
 	while (index < stack[0].size)
 	{
 		pos_aux = ft_find_small(stack, 0);
 		stack[pos_aux].index = index;
-		min = stack[pos_aux].content;
 		pos_aux++;
 		index++;
 	}

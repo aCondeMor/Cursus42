@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting_big.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 19:12:53 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/28 16:04:04 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/11/03 13:28:11 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_find_small(t_stack *stack_a, int min_index)
 	return (pos_min);
 }
 
-int	ft_move_to_b(t_stack *stack_a, t_stack *stack_b, int magic_nbr)
+void	ft_move_to_b(t_stack *stack_a, t_stack *stack_b, int magic_nbr)
 {
 	int	median;
 	int	iter;
@@ -102,34 +102,33 @@ int	ft_move_to_b(t_stack *stack_a, t_stack *stack_b, int magic_nbr)
 		pos = 0;
 		iter++;
 	}
-	return (median);
 }
 
-void	ft_sort_a(t_stack *stack_a, t_stack *stack_b)
+int	ft_sort_a(t_stack *stack_a, t_stack *stack_b)
 {
 	int	num_elem;
 	int	pos_max;
 
 	num_elem = ft_num_elems(stack_a);
 	pos_max = 0;
-	while (num_elem > 0)
+	while ((num_elem > 3)  && (ft_is_sorted(stack_a) == 0))
 	{
 		pos_max = ft_find_small(stack_a, stack_a[0].size);
 		ft_move_min(stack_a, stack_b, pos_max);
 		pos_max--;
 		num_elem--;
 	}
+	//ft_print(stack_a, stack_b);
+	if (ft_is_sorted(stack_a) == 0)
+		ft_sort_3elem(stack_a);
+	//ft_print(stack_a, stack_b);
+	return (num_elem);
 }
 
-void	ft_back_to_a(t_stack *stack_a, t_stack *stack_b, int num_elem)
+void	ft_back_to_a(t_stack *stack_a, t_stack *stack_b)
 {
 	int	pos_max;
 
-	while ((num_elem - 1) > 0)
-	{
-		ft_pa(stack_a, stack_b);
-		num_elem--;
-	}
 	while (ft_num_elems(stack_b) > 0)
 	{
 		pos_max = ft_find_big(stack_b);
@@ -139,17 +138,13 @@ void	ft_back_to_a(t_stack *stack_a, t_stack *stack_b, int num_elem)
 
 void	ft_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	int	num_elem;
-	int	median;
 	int	magic_nbr;
 
 	if (stack_a[0].size > 100)
-		magic_nbr = 9;
+		magic_nbr = 12;
 	else
-		magic_nbr = 6;
-	median = ft_move_to_b(stack_a, stack_b, magic_nbr);
-	num_elem = ft_num_elems(stack_a);
+		magic_nbr = 4;
+	ft_move_to_b(stack_a, stack_b, magic_nbr);
 	ft_sort_a(stack_a, stack_b);
-	ft_back_to_a(stack_a, stack_b, num_elem);
-	//ft_print(stack_a, stack_b);
+	ft_back_to_a(stack_a, stack_b);
 }
