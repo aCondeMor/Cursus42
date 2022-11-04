@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/11/03 12:45:53 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:20:55 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void	ft_init(int argc, char *argv[])
 
 	aux = 0;
 	iter = 1;
-	ft_check_dupl(argv);
+	if (argc > 1)
+		ft_check_dupl(argv);
 	stack_a = ft_stack_new(argc);
 	stack_b = ft_stack_new(argc);
 	while (iter <= argc)
@@ -106,16 +107,23 @@ void	ft_init(int argc, char *argv[])
 int	main(int argc, char *argv[])
 {
 	char	**aux;
+	char	*join;
+	int		lines_nbr;
 
-	aux = NULL;
-	if (argc < 2)
-		return (0);
-	else if (argc == 2)
+	if (argc != 2)
 	{
-		aux = ft_split(ft_strjoin("0 ", argv[1]), 32);
-		ft_init((ft_count_lines(argv[1], 32)), aux);
+		ft_iswrong();
+		return (1);
 	}
 	else
-		ft_init((argc - 1), argv);
-	free(aux);
+	{
+		lines_nbr = ft_count_lines(argv[1], 32);
+		join = ft_strjoin("0 ", argv[1]);
+		aux = ft_split(join, 32);
+		ft_init(lines_nbr, aux);
+		free(join);
+		free(aux);
+		
+	}
+	return (0);
 }
