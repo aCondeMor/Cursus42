@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 19:12:53 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/11/02 17:58:25 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/11/07 18:45:10 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_stack	*ft_stack_new(int size)
 	int		iter;
 
 	iter = 0;
-	stack = malloc(size * (sizeof(t_stack)));
+	stack = (t_stack*) malloc(size * (sizeof(t_stack)));
 	if (!stack)
 		return (0);
 	while (iter < size)
