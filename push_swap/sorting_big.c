@@ -6,100 +6,54 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 19:12:53 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/11/03 13:28:11 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:47:19 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_find_big(t_stack *stack_a)
+int	ft_find_best_min(t_stack *stack_a, int pivot)
 {
-	int	max;
-	int	iter;
-	int	pos_max;
+	int	pos;
+	int	to_move;
+	int	to_top;
 
-	iter = 0;
-	max = -2147483647;
-	pos_max = 0;
-	while ((iter < stack_a[0].size) && (stack_a[iter].isnull == 0))
+	pos = 0;
+	to_move = 0;
+	to_top = stack_a[0].size;
+	while ((pos < stack_a[0].size) && (stack_a[pos].isnull == 0))
 	{
-		if (stack_a[iter].content > max)
+		if ((stack_a[pos].index < (pivot))
+			&& (stack_a[pos].totop < to_top))
 		{
-			max = stack_a[iter].content;
-			pos_max = iter;
+			to_move = pos;
+			to_top = stack_a[pos].totop;
+			pos = 0;
 		}
-		iter++;
+		pos++;
 	}
-	return (pos_max);
-}
-
-void	ft_move_max(t_stack *stack_a, t_stack *stack_b, int pos)
-{
-	int	pivot;
-
-	pivot = ((ft_num_elems(stack_b)) / 2);
-	if (pivot >= pos)
-	{
-		while (pos > 0)
-		{
-			ft_rb(stack_b);
-			pos--;
-		}
-		ft_pa(stack_a, stack_b);
-	}
-	else
-	{
-		while ((stack_b[pos].isnull == 0) && (pos < ft_num_elems(stack_b)))
-		{
-			ft_rrb(stack_b);
-			pos++;
-		}
-		ft_pa(stack_a, stack_b);
-	}
-}
-
-int	ft_find_small(t_stack *stack_a, int min_index)
-{
-	int	iter;
-	int	pos_min;
-	int	min;
-
-	iter = 0;
-	pos_min = 0;
-	min = 2147483647;
-	while ((iter < stack_a[0].size) && (stack_a[iter].isnull == 0))
-	{
-		if ((stack_a[iter].content < min) && (stack_a[iter].index < min_index))
-		{
-			min = stack_a[iter].content;
-			pos_min = iter;
-		}
-		iter++;
-	}
-	return (pos_min);
+	return (to_move);
 }
 
 void	ft_move_to_b(t_stack *stack_a, t_stack *stack_b, int magic_nbr)
 {
 	int	median;
 	int	iter;
-	int	pos;
+	int	flag;
 
 	iter = 1;
-	pos = 0;
+	flag = 0;
 	median = stack_a[0].size / magic_nbr;
-	while (iter < magic_nbr)
+	ft_update_totop(stack_a);
+	while ((iter < magic_nbr) && (ft_is_sorted(stack_a) == 0))
 	{
-		while ((pos < stack_a[0].size) && (stack_a[pos].isnull == 0))
+		while ((flag < (median * iter)) && (ft_is_sorted(stack_a) == 0))
 		{
-			if (stack_a[pos].index < (median * iter))
-			{
-				ft_move_min(stack_a, stack_b, pos);
-				pos = 0;
-			}
-			pos++;
+			ft_move_min(stack_a, stack_b,
+				ft_find_best_min(stack_a, median * iter));
+			ft_update_totop(stack_a);
+			flag++;
 		}
-		pos = 0;
 		iter++;
 	}
 }
@@ -111,17 +65,15 @@ int	ft_sort_a(t_stack *stack_a, t_stack *stack_b)
 
 	num_elem = ft_num_elems(stack_a);
 	pos_max = 0;
-	while ((num_elem > 3)  && (ft_is_sorted(stack_a) == 0))
+	while ((num_elem > 3) && (ft_is_sorted(stack_a) == 0))
 	{
 		pos_max = ft_find_small(stack_a, stack_a[0].size);
 		ft_move_min(stack_a, stack_b, pos_max);
 		pos_max--;
 		num_elem--;
 	}
-	//ft_print(stack_a, stack_b);
 	if (ft_is_sorted(stack_a) == 0)
 		ft_sort_3elem(stack_a);
-	//ft_print(stack_a, stack_b);
 	return (num_elem);
 }
 
@@ -140,10 +92,10 @@ void	ft_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	int	magic_nbr;
 
-	if (stack_a[0].size > 100)
-		magic_nbr = 12;
+	if (stack_a[0].size > 200)
+		magic_nbr = 9;
 	else
-		magic_nbr = 4;
+		magic_nbr = 5;
 	ft_move_to_b(stack_a, stack_b, magic_nbr);
 	ft_sort_a(stack_a, stack_b);
 	ft_back_to_a(stack_a, stack_b);

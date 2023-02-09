@@ -2,7 +2,7 @@ SOURCE = main.c libft/ft_split.c libft/ft_isdigit.c libft/ft_putendl_fd.c\
 	libft/ft_strncmp.c libft/ft_strlen.c libft/ft_putchar_fd.c\
 	libft/ft_putstr_fd.c swaps.c pushes.c rotates.c rev_rotates.c\
 	print_stacks.c sorting_small.c sorting_big.c stack.c libft/ft_substr.c libft/ft_strdup.c\
-	libft/ft_memcpy.c libft/ft_strjoin.c
+	libft/ft_memcpy.c libft/ft_strjoin.c aux_functions.c
 
 OBJS = ${SOURCE:.c=.o}
 NAME = push_swap
@@ -22,7 +22,7 @@ clean:
 fclean:	clean
 	rm -f ${NAME}
 try:
-	./pushswap.a
+	./push_swap
 re: fclean all
 
 .PHONY: all clean fclean try re so .c.o

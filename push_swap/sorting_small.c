@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting_small.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 19:12:53 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/28 15:40:18 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:45:55 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_num_elems(t_stack *stack_a)
 	int	iter;
 
 	iter = 0;
-	while (stack_a[iter].isnull == 0)
+	while ((stack_a[iter].isnull == 0) && (iter < stack_a[0].size))
 		iter++;
 	return (iter);
 }
@@ -82,6 +82,10 @@ void	ft_sort_nbr(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_a[0].size > 10)
 		ft_sort(stack_a, stack_b);
+	else if (stack_a[0].size == 3)
+		ft_sort_3elem(stack_a);
+	else if (stack_a[0].size == 2)
+		ft_ra(stack_a);
 	else if (stack_a[0].size <= 10)
 	{
 		while (stack_a[3].isnull == 0)
@@ -89,12 +93,5 @@ void	ft_sort_nbr(t_stack *stack_a, t_stack *stack_b)
 				ft_find_small(stack_a, stack_a[0].size));
 		ft_sort_3elem(stack_a);
 		ft_return_b(stack_a, stack_b);
-	}
-	else if (stack_a[0].size == 3)
-		ft_sort_3elem(stack_a);
-	else if (stack_a[0].size == 2)
-	{
-		if (stack_a[0].content > stack_a[1].content)
-			ft_ra(stack_a);
 	}
 }

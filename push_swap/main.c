@@ -6,25 +6,11 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/11/09 11:13:48 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:40:14 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_is_sorted(t_stack *stack_a)
-{
-	int	iter;
-
-	iter = 1;
-	while ((stack_a[iter].isnull == 0) && (iter < stack_a[0].size))
-	{
-		if (stack_a[iter].content < stack_a[iter - 1].content)
-			return (0);
-		iter++;
-	}
-	return (1);
-}
 
 void	ft_check_dupl(char **argv)
 {
@@ -43,6 +29,14 @@ void	ft_check_dupl(char **argv)
 		}
 		iter++;
 	}
+}
+
+void	ft_check_in_number(long long int suma, int neg, char digit)
+{
+	if (((suma > 2147483648) && (neg == -1))
+		|| (ft_isdigit(digit) == 0)
+		|| ((suma >= 2147483648) && (neg == 1)))
+		ft_iswrong();
 }
 
 int	ft_get_num(char *number)
@@ -65,10 +59,7 @@ int	ft_get_num(char *number)
 	{
 		if (ft_isdigit(number[iter]) != 0)
 			suma = (suma * 10) + (number[iter] - '0');
-		if (((suma > 2147483648) && (neg == -1))
-			|| (ft_isdigit(number[iter]) == 0)
-			|| ((suma >= 2147483648) && (neg == 1)))
-			ft_iswrong();
+		ft_check_in_number(suma, neg, number[iter]);
 		iter++;
 	}
 	if ((iter == 1) && (ft_isdigit(number[0]) == 0))
@@ -98,10 +89,8 @@ void	ft_init(int argc, char *argv[])
 	if (ft_is_sorted(stack_a) == 0)
 	{
 		ft_index(stack_a);
-		//ft_print(stack_a, stack_b);
 		ft_sort_nbr(stack_a, stack_b);
 	}
-	//ft_print(stack_a, stack_b);
 	free(stack_a);
 	free(stack_b);
 }
@@ -114,10 +103,7 @@ int	main(int argc, char *argv[])
 
 	i = 0;
 	if (argc == 1)
-	{
-		//ft_iswrong();
 		return (0);
-	}
 	else if (argc == 2)
 	{
 		lines_nbr = ft_count_lines(argv[1], 32);

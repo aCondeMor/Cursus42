@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/28 12:36:40 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:47:15 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_stack
 	int	size;
 	int	isnull;
 	int	index;
+	int	totop;
 }	t_stack;
 
 //stack
@@ -58,6 +59,8 @@ void	ft_index(t_stack *stack);
 void	ft_sort(t_stack *stack_a, t_stack *stack_b);
 void	ft_move_min(t_stack *stack_a, t_stack *stack_b, int pos_min);
 int		ft_num_elems(t_stack *stack_a);
+void	ft_move_max(t_stack *stack_a, t_stack *stack_b, int pos);
+void	ft_update_totop(t_stack *stack_a);
 //split
 char	**ft_split(char const *s, char c);
 int		ft_count_lines(char const *s, char c);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_stacks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/10/28 10:19:13 by aconde-m         ###   ########.fr       */
+/*   Updated: 2022/11/09 17:14:17 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ void	ft_print(t_stack *stack_a, t_stack *stack_b)
 	while (iter < size)
 	{
 		if (stack_a[iter].isnull == 0)
-			printf("%d\t[%d]\t", stack_a[iter].content, stack_a[iter].index);
+			printf("%d\t[%d]\t[%d]\t", stack_a[iter].content,
+				stack_a[iter].index, stack_a[iter].totop);
 		else
-			printf("-\t[%d]\t", stack_a[iter].index);
+			printf("-\t[%d]\t[%d]\t", stack_a[iter].index, stack_a[iter].totop);
 		if (stack_b[iter].isnull == 0)
-			printf("%d\t[%d]\n", stack_b[iter].content, stack_b[iter].index);
+			printf("%d\t[%d]\t[%d]\n", stack_b[iter].content,
+				stack_b[iter].index, stack_b[iter].totop);
 		else
-			printf("-\t[%d]\n", stack_b[iter].index);
+			printf("-\t[%d]\t[%d]\n", stack_b[iter].index, stack_b[iter].totop);
 		iter++;
 	}
 	printf("-\t\t-\n");
