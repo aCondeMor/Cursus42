@@ -6,15 +6,15 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/11/09 17:14:17 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/02/09 19:15:22 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_iswrong(void)
+void	ft_iswrong(char *error)
 {
-	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(error, 2);
 	exit(1);
 }
 

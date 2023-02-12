@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/11/09 17:47:15 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/02/09 19:45:00 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_rrb(t_stack *stack_b);
 void	ft_rrr(t_stack *stack_a, t_stack *stack_b);
 //print stacks
 void	ft_print(t_stack *stack_a, t_stack *stack_b);
-void	ft_iswrong(void);
+void	ft_iswrong(char *error);
 //sort
 void	ft_sort_nbr(t_stack *stack_a, t_stack *stack_b);
 void	ft_sort_3elem(t_stack *stack_a);
@@ -64,4 +64,8 @@ void	ft_update_totop(t_stack *stack_a);
 //split
 char	**ft_split(char const *s, char c);
 int		ft_count_lines(char const *s, char c);
+//Bonus
+void	ft_checker(t_stack *stack_a, t_stack *stack_b);
+//get_next_line
+char	*get_next_line(int file);
 #endif

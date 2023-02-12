@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushes.c                                           :+:      :+:    :+:   */
+/*   pippex.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/02/09 18:32:49 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:10:43 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef  PIPPEX_H
+# define PIPPEX_H
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include "libft/libft.h"
 
-void	ft_pa(t_stack *stack_a, t_stack *stack_b)
+typedef struct s_pippex
 {
-	if (stack_b[0].isnull == 0)
-	{
-		ft_stack_addtop(stack_a, stack_b[0].content, stack_b[0].index);
-		ft_stack_deltop(stack_b);
-	}
-	ft_putstr_fd("pa\n", 1);
-}
+	int	content;
+}	t_pippex;
 
-void	ft_pb(t_stack *stack_a, t_stack *stack_b)
-{
-	if (stack_a[0].isnull == 0)
-	{
-		ft_stack_addtop(stack_b, stack_a[0].content, stack_a[0].index);
-		ft_stack_deltop(stack_a);
-	}
-	ft_putstr_fd("pb\n", 1);
-}
+#endif

@@ -1,33 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushes.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/02/09 18:32:49 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:16:31 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "pippex.h"
 
-void	ft_pa(t_stack *stack_a, t_stack *stack_b)
+int	main()
 {
-	if (stack_b[0].isnull == 0)
-	{
-		ft_stack_addtop(stack_a, stack_b[0].content, stack_b[0].index);
-		ft_stack_deltop(stack_b);
-	}
-	ft_putstr_fd("pa\n", 1);
-}
+	int		fd[2];
+	int		pid;
+	char	buf[10];
+	int		num;
 
-void	ft_pb(t_stack *stack_a, t_stack *stack_b)
-{
-	if (stack_a[0].isnull == 0)
+	num = 0;
+	if (pipe(fd) == -1)
+		return 1;
+	pid = fork();
+	if (pid == 0)
 	{
-		ft_stack_addtop(stack_b, stack_a[0].content, stack_a[0].index);
-		ft_stack_deltop(stack_a);
+		close(fd[0]); // cerramos lectura
+		dup2(fd[1], STDOUT_FILENO);
+		execve()
+		execve("./","ping -c 5 google.com", NULL); //Revisar esta parte
+		close (fd[1]); // cerramos escritura
+		//hijo
 	}
-	ft_putstr_fd("pb\n", 1);
+	else if (pid < 0)
+		return 2;
+	else 
+	{
+		close(fd[1]); // cerramos escritura
+		dup2(fd[1], STDIN_FILENO);
+		execve("./","grep rtt",NULL);
+		close (fd[0]); // cerramos lectura
+	}	//padre
 }
