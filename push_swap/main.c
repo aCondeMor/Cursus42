@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/02/09 19:19:09 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:57:29 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_check_dupl(char **argv)
 		while (init < iter)
 		{
 			if (!ft_strncmp(argv[init], argv[iter], ft_strlen(argv[iter]) + 1))
-				ft_iswrong("Error, hay duplicados");
+				ft_iswrong("Error");
 			init++;
 		}
 		iter++;
@@ -36,7 +36,7 @@ void	ft_check_in_number(long long int suma, int neg, char digit)
 	if (((suma > 2147483648) && (neg == -1))
 		|| (ft_isdigit(digit) == 0)
 		|| ((suma >= 2147483648) && (neg == 1)))
-		ft_iswrong("Error, numeros mas grandes que int");
+		ft_iswrong("Error");
 }
 
 int	ft_get_num(char *number)
@@ -63,7 +63,7 @@ int	ft_get_num(char *number)
 		iter++;
 	}
 	if ((iter == 1) && (ft_isdigit(number[0]) == 0))
-		ft_iswrong("Error, alguno argumento no es entero");
+		ft_iswrong("Error");
 	return (suma * neg);
 }
 

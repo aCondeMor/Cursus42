@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 11:12:43 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/02/09 19:37:47 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:29:32 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*read_file(int fd, char *line_read)
 {
@@ -70,25 +70,25 @@ char	*set_line_read(char *line_read)
 char	*get_next_line(int file)
 {
 	char		*line_aux;
-	static char	*line_read;
+	static char	*line_read[4096] = {0};
 
 	line_aux = NULL;
-	if (file < 0 || BUFFER_SIZE <= 0 || read(file, 0, 0) < 0)
+	if (file > 4095 || read(file, 0, 0) < 0)
 		return (NULL);
-	line_read = read_file(file, line_read);
-	if (!ft_strchr(line_read, '\n'))
+	line_read[file] = read_file(file, line_read[file]);
+	if (!ft_strchr(line_read[file], '\n'))
 	{
-		line_aux = check_line(line_read);
-		line_read = NULL;
+		line_aux = check_line(line_read[file]);
+		line_read[file] = NULL;
 		return (line_aux);
 	}
-	if (line_read[0] != '\0')
+	if (line_read[file][0] != '\0')
 	{
-		line_aux = ft_substr(line_read, 0, ft_strlen(line_read)
-				- ft_strlen((ft_strchr(line_read, '\n'))) + 1);
-		line_read = set_line_read(line_read);
+		line_aux = ft_substr(line_read[file], 0, ft_strlen(line_read[file])
+				- ft_strlen((ft_strchr(line_read[file], '\n'))) + 1);
+		line_read[file] = set_line_read(line_read[file]);
 	}
 	else
-		free(line_read);
+		free(line_read[file]);
 	return (line_aux);
 }

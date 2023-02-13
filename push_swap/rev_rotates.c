@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rev_rotates.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/02/09 18:32:50 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:52:41 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rra(t_stack *stack_a)
+void	ft_rra(t_stack *stack_a, int a)
 {
 	int	aux;
 	int	index;
@@ -34,10 +34,11 @@ void	ft_rra(t_stack *stack_a)
 		stack_a[iter - 1].index = -1;
 		ft_stack_addtop(stack_a, aux, index);
 	}
-	ft_putstr_fd("rra\n", 1);
+	if (a == 1)
+		ft_putstr_fd("rra\n", 1);
 }
 
-void	ft_rrb(t_stack *stack_b)
+void	ft_rrb(t_stack *stack_b, int a)
 {
 	int	aux;
 	int	index;
@@ -59,11 +60,12 @@ void	ft_rrb(t_stack *stack_b)
 		stack_b[iter - 1].index = -1;
 		ft_stack_addtop(stack_b, aux, index);
 	}
-	ft_putstr_fd("rrb\n", 1);
+	if (a == 1)
+		ft_putstr_fd("rrb\n", 1);
 }
 
-void	ft_rrr(t_stack *stack_a, t_stack *stack_b)
+void	ft_rrr(t_stack *stack_a, t_stack *stack_b, int a)
 {
-	ft_rra(stack_a);
-	ft_rrb(stack_b);
+	ft_rra(stack_a, a);
+	ft_rrb(stack_b, a);
 }

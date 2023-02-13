@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 20:47:42 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/06/23 00:15:31 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:29:48 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(char *str)
 {
@@ -20,9 +20,7 @@ int	ft_strlen(char *str)
 	if (!str)
 		return (0);
 	while (str[cont] != '\0')
-	{
 		cont++;
-	}
 	return (cont);
 }
 
@@ -50,7 +48,7 @@ char	*ft_strchr(char *src, int c)
 		return (NULL);
 	length_src = ft_strlen(src);
 	count = 0;
-	while (count <= length_src)
+	while (count < length_src)
 	{
 		if (src[count] == (unsigned char)(c))
 			return (src + count);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/02/09 19:45:00 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:59:27 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ t_stack	*ft_stack_new(int size);
 void	ft_stack_addnext(t_stack *stack, int content, int index);
 void	ft_stack_deltop(t_stack *stack);
 //swaps
-void	ft_sa(t_stack *stack_a);
-void	ft_sb(t_stack *stack_b);
-void	ft_ss(t_stack *stack_a, t_stack *stack_b);
+void	ft_sa(t_stack *stack_a, int a);
+void	ft_sb(t_stack *stack_b, int a);
+void	ft_ss(t_stack *stack_a, t_stack *stack_b, int a);
 //pushes
-void	ft_pa(t_stack *stack_a, t_stack *stack_b);
-void	ft_pb(t_stack *stack_a, t_stack *stack_b);
+void	ft_pa(t_stack *stack_a, t_stack *stack_b, int a);
+void	ft_pb(t_stack *stack_a, t_stack *stack_b, int a);
 //rotates
-void	ft_ra(t_stack *stack_a);
-void	ft_rb(t_stack *stack_b);
-void	ft_rr(t_stack *stack_a, t_stack *stack_b);
+void	ft_ra(t_stack *stack_a, int a);
+void	ft_rb(t_stack *stack_b, int a);
+void	ft_rr(t_stack *stack_a, t_stack *stack_b, int a);
 //reverse rotates
-void	ft_rra(t_stack *stack_a);
-void	ft_rrb(t_stack *stack_b);
-void	ft_rrr(t_stack *stack_a, t_stack *stack_b);
+void	ft_rra(t_stack *stack_a, int a);
+void	ft_rrb(t_stack *stack_b, int a);
+void	ft_rrr(t_stack *stack_a, t_stack *stack_b, int a);
 //print stacks
 void	ft_print(t_stack *stack_a, t_stack *stack_b);
 void	ft_iswrong(char *error);

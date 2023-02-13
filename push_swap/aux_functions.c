@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2022/11/09 17:47:01 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:58:10 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,19 @@ void	ft_move_max(t_stack *stack_a, t_stack *stack_b, int pos)
 	{
 		while (pos > 0)
 		{
-			ft_rb(stack_b);
+			ft_rb(stack_b, 1);
 			pos--;
 		}
-		ft_pa(stack_a, stack_b);
+		ft_pa(stack_a, stack_b, 1);
 	}
 	else
 	{
 		while ((stack_b[pos].isnull == 0) && (pos < ft_num_elems(stack_b)))
 		{
-			ft_rrb(stack_b);
+			ft_rrb(stack_b, 1);
 			pos++;
 		}
-		ft_pa(stack_a, stack_b);
+		ft_pa(stack_a, stack_b, 1);
 	}
 }
 
