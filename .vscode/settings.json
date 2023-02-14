@@ -1,8 +1,0 @@
-{
-    "makefile.extensionOutputFolder": "./.vscode",
-    "C_Cpp.errorSquiggles": "Disabled",
-    "files.associations": {
-        "get_next_line_bonus.h": "c",
-        "stdlib.h": "c"
-    }
-}
