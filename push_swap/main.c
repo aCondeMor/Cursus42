@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/02/13 16:57:29 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/02/14 12:32:32 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,18 @@ void	ft_init(int argc, char *argv[])
 	free(stack_b);
 }
 
+void prueba (void)
+{
+	System.leaks(push_swap);
+}
+
 int	main(int argc, char *argv[])
 {
 	char	**aux;
 	int		lines_nbr;
 	int		i;
 
+	
 	i = 0;
 	if (argc == 1)
 		return (0);
@@ -118,5 +124,6 @@ int	main(int argc, char *argv[])
 	}
 	else
 		ft_init(argc - 1, &argv[1]);
+	atexit(prueba);
 	return (0);
 }
