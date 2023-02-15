@@ -1,4 +1,6 @@
-SOURCE = main.c
+SOURCE = main.c libft/ft_split.c libft/ft_strjoin.c libft/ft_strlen.c\
+	libft/ft_strncmp.c libft/ft_strdup.c libft/ft_substr.c\
+	libft/ft_memcpy.c\
 
 OBJS = ${SOURCE:.c=.o}
 NAME = pipex
@@ -10,7 +12,8 @@ CFLAGS = -Wall -Werror -Wextra
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	$(GCC) ${OBJS} -o ${NAME}
+	${GCC} ${CFLAGS} ${OBJS} -o ${NAME} 
+
 clean:
 	rm -f ${OBJS}
 fclean:	clean
