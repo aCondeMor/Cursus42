@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/03/07 00:15:27 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/03/07 00:21:10 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ char	*ft_checkenv(char **env, char *argv)
 			ft_iswrong("No hay PATH en tu env");
 		env++;
 	}
-	//Ojo con el split que puedes estar haciendo un malloc sin free
 	path_list = ft_substr(*env, 5, ft_strlen(*env) - 6);
 	temp = ft_split(path_list, ':');
 	free(path_list);

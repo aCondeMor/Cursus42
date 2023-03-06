@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/03/07 00:04:42 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/03/07 00:24:00 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_pipe(t_pipex input)
 	return (0);
 }
 
-void freezear(char **in)
+void	freezear(char **in)
 {
 	while (*in)
 	{
@@ -64,17 +64,11 @@ void freezear(char **in)
 	}
 }
 
-/*void	leakcheck(void)
-{
-	system("leaks pipex");
-}*/
-
 int	main(int argc, char **argv, char **env)
 {
 	t_pipex	in;
 	char	*temp;
 
-	//atexit (leakcheck);
 	in.fdin = 0;
 	if (ft_checkargs(argc, argv, &in) == 0)
 	{
@@ -87,7 +81,6 @@ int	main(int argc, char **argv, char **env)
 		in.path2 = ft_strjoin(temp, in.command2[0]);
 		free(temp);
 		in.env = env;
-
 		ft_pipe(in);
 		freezear(in.command1);
 		freezear(in.command2);
