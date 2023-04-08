@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/03/07 00:21:10 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/04/08 11:43:45 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*ft_findpath(char **env, char *argument)
 			free (temp2);
 		}
 	}
-	ft_iswrong("El comando introducido no esta en ningun path de env");
+	ft_putendl_fd("El comando introducido no esta en ningun path de env", 2);
 	return (NULL);
 }
 
