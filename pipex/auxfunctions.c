@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   auxfunctions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/04/08 11:43:45 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:03:10 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_checkargs(int argc, char **argv, t_pipex *in)
 	if (!(argc == 5))
 	{
 		flag++;
-		ft_putstr_fd("Numero de argumentos incorrecto\n", 2);
+		ft_iswrong("Numero de argumentos incorrecto\n");
 	}
 	else
 	{
@@ -35,8 +35,8 @@ int	ft_checkargs(int argc, char **argv, t_pipex *in)
 	}
 	if ((*in).fdin < 0)
 	{
-		flag++;
-		ft_iswrong("El archivo de entrada no se puede encontrar\n");
+		(*in).nofile = 1;
+		ft_putstr_fd("El archivo no se puede encontrar\n", 2);
 	}
 	if ((*in).fdout < 0)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/03/07 00:24:00 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:57:00 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void static	ft_son(t_pipex input)
 	dup2(input.fdin, STDIN_FILENO);
 	dup2 (input.fd[1], STDOUT_FILENO);
 	close (input.fd[1]);
-	execve(input.path1, input.command1, input.env);
+	close (input.fdin);
+	if (execve(input.path1, input.command1, input.env) < 0)
+		ft_iswrong("command not found, revisa parametros1");
 }
 
 void static	ft_son2(t_pipex input)
@@ -28,7 +30,9 @@ void static	ft_son2(t_pipex input)
 	dup2 (input.fd[0], STDIN_FILENO);
 	dup2(input.fdout, STDOUT_FILENO);
 	close (input.fd[0]);
-	execve(input.path2, input.command2, input.env);
+	close (input.fdout);
+	if (execve(input.path2, input.command2, input.env) < 0)
+		ft_iswrong("command not found, revisa parametros2");
 }
 
 int	ft_pipe(t_pipex input)
@@ -37,21 +41,34 @@ int	ft_pipe(t_pipex input)
 	int	success;
 
 	if (pipe(input.fd) == -1)
-		return (1);
+		ft_iswrong("error creando pipe");
 	pid = fork();
-	if (pid == 0)
+	if (pid < 0)
+		ft_iswrong("error en el fork de son1");
+	else if (pid == 0)
 		ft_son(input);
 	else
 	{
 		close(input.fd[1]);
 		pid = fork();
-		if (pid == 0)
+		if (pid < 0)
+			ft_iswrong("error en el fork de son2");
+		else if (pid == 0)
+		{
 			ft_son2(input);
+			waitpid(pid, &success, 0);
+			if (WIFEXITED(success) != 0)
+				exit(WEXITSTATUS(success));
+		}
 		else
 			close(input.fd[0]);
 	}
-	wait(&success);
-	wait(&success);
+	waitpid(0, NULL, 0);
+	close(input.fd[0]);
+	close(input.fd[1]);
+	//waitpid(pid, &success, 0);
+	//if (WIFEXITED(success) != 0)
+	//	exit(WEXITSTATUS(success));
 	return (0);
 }
 
@@ -89,4 +106,6 @@ int	main(int argc, char **argv, char **env)
 		free(in.command1);
 		free(in.command2);
 	}
+	else
+		exit (1);
 }
