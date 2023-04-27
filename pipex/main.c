@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/04/25 17:57:00 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:42:38 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,39 +37,32 @@ void static	ft_son2(t_pipex input)
 
 int	ft_pipe(t_pipex input)
 {
-	int	pid;
+	int	pid[2];
 	int	success;
 
 	if (pipe(input.fd) == -1)
 		ft_iswrong("error creando pipe");
-	pid = fork();
-	if (pid < 0)
+	pid[0] = fork();
+	if (pid[0] < 0)
 		ft_iswrong("error en el fork de son1");
-	else if (pid == 0)
+	else if (pid[0] == 0)
 		ft_son(input);
 	else
 	{
 		close(input.fd[1]);
-		pid = fork();
-		if (pid < 0)
+		pid[1] = fork();
+		if (pid[1] < 0)
 			ft_iswrong("error en el fork de son2");
-		else if (pid == 0)
-		{
+		else if (pid[1] == 0)
 			ft_son2(input);
-			waitpid(pid, &success, 0);
-			if (WIFEXITED(success) != 0)
-				exit(WEXITSTATUS(success));
-		}
 		else
 			close(input.fd[0]);
 	}
-	waitpid(0, NULL, 0);
-	close(input.fd[0]);
-	close(input.fd[1]);
-	//waitpid(pid, &success, 0);
-	//if (WIFEXITED(success) != 0)
-	//	exit(WEXITSTATUS(success));
-	return (0);
+	waitpid(pid[0], NULL, 0);
+	waitpid(pid[1], &success, 0);
+	if (WIFEXITED(success) != 0)
+		exit(WEXITSTATUS(success));
+	exit(1);
 }
 
 void	freezear(char **in)

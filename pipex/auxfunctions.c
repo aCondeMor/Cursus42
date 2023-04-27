@@ -6,7 +6,7 @@
 /*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/04/25 15:03:10 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/04/27 18:40:12 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_iswrong(char *error)
 {
 	ft_putendl_fd(error, 2);
-	exit(1);
+	exit(127);
 }
 
 int	ft_checkargs(int argc, char **argv, t_pipex *in)
@@ -60,7 +60,10 @@ char	*ft_findpath(char **env, char *argument)
 
 	if ((!env) || (!argument) || (!*env))
 		return (NULL);
+	if (ft_strchr(argument, '/'))
+		temp = ft_strrchr(argument, '/');
 	temp = ft_strjoin ("/", argument);
+	printf("temp es: %s\n", temp);
 	while (*env)
 	{
 		temp2 = ft_strjoin(*env, temp);
