@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   auxfunctions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/04/27 18:40:12 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/04/30 23:34:18 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,14 @@ int	ft_checkargs(int argc, char **argv, t_pipex *in)
 
 char	**ft_checkcom(char *arg_in)
 {
+	char	**temp;
+
 	if (!arg_in)
 		return (NULL);
-	return (ft_split(arg_in, ' '));
+	temp = ft_split(arg_in, ' ');
+	if (ft_strchr(temp[0], '/'))
+		temp[0] = ft_strrchr(temp[0], '/') + 1;
+	return (temp);
 }
 
 char	*ft_findpath(char **env, char *argument)
@@ -61,7 +66,7 @@ char	*ft_findpath(char **env, char *argument)
 	if ((!env) || (!argument) || (!*env))
 		return (NULL);
 	if (ft_strchr(argument, '/'))
-		temp = ft_strrchr(argument, '/');
+		return (argument);
 	temp = ft_strjoin ("/", argument);
 	printf("temp es: %s\n", temp);
 	while (*env)
@@ -79,7 +84,6 @@ char	*ft_findpath(char **env, char *argument)
 			free (temp2);
 		}
 	}
-	ft_putendl_fd("El comando introducido no esta en ningun path de env", 2);
 	return (NULL);
 }
 

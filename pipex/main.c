@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aconde-m <aconde-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aconde-m <aconde-m@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 11:59:14 by aconde-m          #+#    #+#             */
-/*   Updated: 2023/04/27 15:42:38 by aconde-m         ###   ########.fr       */
+/*   Updated: 2023/04/30 23:32:10 by aconde-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ int	ft_pipe(t_pipex input)
 			ft_iswrong("error en el fork de son2");
 		else if (pid[1] == 0)
 			ft_son2(input);
-		else
-			close(input.fd[0]);
+		close(input.fd[0]);
 	}
 	waitpid(pid[0], NULL, 0);
 	waitpid(pid[1], &success, 0);
